@@ -1,0 +1,9 @@
+:root{
+	--transition-timing-function: ease-out;
+	--transition-duration: .1s;
+
+	--late: #ffb73f;
+	--paid: #01c0ff;
+	--ooo: #63bc68;
+	--clear: #aaa;
+}

@@ -1,0 +1,116 @@
+:root{
+	--calendar-item-size: 6rem;
+	--calendar-border-radius: 4px;
+}
+
+.calendar {
+	display: flex;
+	flex-direction: column;
+	background: #fff;
+	border: 1px solid #e5e5e5;
+	border-radius: var(--calendar-border-radius);
+}
+
+.calendar-row {
+	display: flex;
+	flex: 0 0 auto;
+}
+
+.calendar-row.is-calendar-data{
+	position: absolute;
+	margin-top: -2.5rem;
+}
+
+.calendar-row.is-calendar-data .calendar-item {
+	border: 0;
+	background: none;
+	height: auto;
+	color: #343537;
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+
+.calendar-item {
+	flex: 0 0 var(--calendar-item-size);
+	width: var(--calendar-item-size);
+	height: var(--calendar-item-size);
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.calendar-item.is-late, 
+.calendar-item.is-paid,
+.calendar-item.is-ooo {
+	border-left: .4rem solid;
+}
+
+.calendar-item.is-late {
+	border-left-color: var(--late);
+}
+
+.calendar-item.is-paid {
+	border-left-color: var(--paid);
+}
+
+.calendar-item.is-ooo {
+	border-left-color: var(--ooo);
+}
+
+.calendar-item {
+	border-bottom: 1px solid;
+	border-right: 1px solid;
+	border-color: #e5e5e5;
+}
+
+.calendar-item.is-clickable {
+	cursor: pointer;
+	transition: var(--transition-timing-function) var(--transition-duration) background;
+}
+
+.calendar-item.is-clickable:hover {
+	background: #f5f5f5;
+}
+
+.calendar-item.is-clickable:active {
+	background: #e2e2e2;
+}
+
+.calendar-row:first-child .calendar-item:first-child{
+	border-radius: var(--calendar-border-radius) 0 0 0;
+}
+
+.calendar-row:first-child .calendar-item:last-child{
+	border-radius: 0 var(--calendar-border-radius) 0 0;
+}
+
+.calendar-row:last-child .calendar-item:first-child{
+	border-radius: 0 0 0 var(--calendar-border-radius);
+}
+
+.calendar-row:last-child .calendar-item:last-child{
+	border-radius: 0 0 var(--calendar-border-radius) 0;
+}
+
+.calendar-row:last-child .calendar-item{
+	border-bottom: 0;
+}
+
+.calendar-row .calendar-item:last-child{
+	border-right: 0;
+}
+
+.userpic {
+	display: flex;
+	justify-content: flex-end;
+	position: absolute;
+	margin-left: calc(-1 * var(--calendar-item-size) + .5rem);
+    margin-top: 1rem;
+	border: 0;
+}
+.userpic img {
+	width: calc(var(--calendar-item-size) / 1.5);
+	height: calc(var(--calendar-item-size) / 1.5);
+	border-radius: 50%;
+}
+

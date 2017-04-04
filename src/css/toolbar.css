@@ -1,0 +1,31 @@
+.toolbar {
+	transition: var(--transition-timing-function) var(--transition-duration) opacity;
+	margin-top: -6.5rem;
+	position: absolute;
+}
+
+.toolbar .toolbar-item {
+	font-size: 1.4rem;
+	display: inline;
+	border-bottom: 4px solid;
+	margin-right: 3rem;
+	color: #303c5b;
+	cursor: pointer;
+
+}
+
+.toolbar .toolbar-item.is-late {
+	border-color: var(--late);
+}
+
+.toolbar .toolbar-item.is-paid {
+	border-color: var(--paid);
+}
+
+.toolbar .toolbar-item.is-ooo {
+	border-color: var(--ooo);
+}
+
+.toolbar .toolbar-item.is-clear {
+	border-color: var(--clear);
+}

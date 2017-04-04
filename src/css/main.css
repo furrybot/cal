@@ -1,0 +1,41 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font: 10px Lato, sans-serif;
+}
+
+body {
+	background: #f6f7fb;
+	display: flex;
+	flex-direction: column;
+}
+
+.header {
+	height: 50px;
+	background: #fff;
+	font: 900 1.7rem Helvetica, sans-serif;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.header::after {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 0;
+	height: 15px;
+	width: 100%;
+	background: linear-gradient(to bottom, #f3f4f9, transparent);
+}
+
+.content {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
