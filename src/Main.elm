@@ -8,8 +8,9 @@ import Calendar.Msg exposing (Msg)
 
 
 main =
-  Html.beginnerProgram
-    { model = initial
+  Html.program
+    { init = initial
     , view = calendarView
     , update = update
+    , subscriptions = subscriptions
     }

@@ -1,6 +1,7 @@
 
 module Calendar.Model exposing (..)
 
+import Calendar.Msg exposing (..)
 import Date exposing (Date)
 
 type EditState
@@ -27,8 +28,13 @@ type alias Model =
     , selection : SelectionState
     }
 
-initial : Model
+initial : (Model, Cmd Msg)
 initial =
-    { state = Normal
+    ({ state = Normal
     , selection = None
-    }
+    }, Cmd.none)
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+  Sub.none

@@ -1,0 +1,128 @@
+var _user$project$Calendar_View$calendarEditHeader = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('toolbar transparent'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('toolbar-item is-late'),
+					_1: {ctor: '[]'}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Calendar_View$calenderHeader = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('calendar-row is-calendar-data'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('calendar-item'),
+					_1: {ctor: '[]'}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Calendar_View$calendarView = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('Content'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('calendar-toolbar-box'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _user$project$Calendar_View$calendarEditHeader(model),
+					_1: {
+						ctor: '::',
+						_0: _user$project$Calendar_View$calenderHeader(model),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Calendar_View$classNameFromState = function (state) {
+	var _p0 = state;
+	switch (_p0.ctor) {
+		case 'DayOff':
+			return 'calendar-item is-clickable';
+		case 'Paid':
+			return 'calendar-item is-clickable';
+		case 'WorkFromHome':
+			return 'calendar-item is-clickable';
+		default:
+			return 'calendar-item is-clickable';
+	}
+};
+var _user$project$Calendar_View$calendarDay = F2(
+	function (date, dayState) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class(
+					_user$project$Calendar_View$classNameFromState(dayState)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Events$onClick(
+						_user$project$Calendar_Msg$SelectDay(date)),
+					_1: {ctor: '[]'}
+				}
+			},
+			{ctor: '[]'});
+	});
+var _user$project$Calendar_View$calendarRow = F2(
+	function (dateRow, model) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('calendar-row'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('userpic'),
+						_1: {ctor: '[]'}
+					},
+					A2(
+						_elm_lang$core$List$map,
+						function (day) {
+							return A2(_user$project$Calendar_View$calendarDay, day, _user$project$Calendar_Model$Paid);
+						},
+						dateRow)),
+				_1: {ctor: '[]'}
+			});
+	});
