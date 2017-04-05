@@ -1,5 +1,5 @@
 
-Elm-app for team delay statictics
+Elm-app for team delay statistics
 ==================
 
 ## Why?
