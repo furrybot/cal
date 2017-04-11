@@ -1,8 +1,0 @@
-var _user$project$Calendar_Msg$UpdateStatistic = {ctor: 'UpdateStatistic'};
-var _user$project$Calendar_Msg$GetStatistic = function (a) {
-	return {ctor: 'GetStatistic', _0: a};
-};
-var _user$project$Calendar_Msg$LoadStatistic = {ctor: 'LoadStatistic'};
-var _user$project$Calendar_Msg$SelectDay = function (a) {
-	return {ctor: 'SelectDay', _0: a};
-};
