@@ -9,6 +9,9 @@ html {
 
 body {
 	background: #f6f7fb;
+}
+
+.main {
 	display: flex;
 	flex-direction: column;
 }
@@ -38,4 +41,5 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	height: 200px;
 }

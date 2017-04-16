@@ -7,18 +7,29 @@ import Date exposing (Date, Month(..), year, month, day)
 import Calendar.Model exposing (..)
 import Calendar.Msg exposing (..)
 
+stylesheet =
+    let 
+        tag = "link"
+        attrs = 
+            [ attribute "rel"       "stylesheet"
+            , attribute "property"  "stylesheet"
+            , attribute "href"      "/css/master.css"
+            ]
+        children = []    
+    in
+        node tag attrs children    
 
 classNameFromState : EditState -> String
 classNameFromState state =
     case state of
         DayOff ->
-            "calendar-item is-clickable"
+            "calendar-item is-clickable is-"
         Paid ->
-            "calendar-item is-clickable"
+            "calendar-item is-clickable is-"
         WorkFromHome ->
-            "calendar-item is-clickable"
+            "calendar-item is-clickable is-"
         Vacation ->
-            "calendar-item is-clickable"
+            "calendar-item is-clickable is-"
 
 
 calendarDay : Date -> EditState -> Html Msg
@@ -46,18 +57,22 @@ calenderHeader model =
     div [ class "calendar-row is-calendar-data"]
       [ div [class "calendar-item"] [] ]
 
-
-calendarEditHeader : Model -> Html Msg
-calendarEditHeader model =
-    div [class "toolbar transparent"]
-      [ div [ class "toolbar-item is-late"] []]
-
+calendarToolbar : Model -> Html Msg
+calendarToolbar model =
+    div [class "toolbar"]
+        [     div [ class "toolbar-item is-late"] [text "Late"]
+            , div [ class "toolbar-item is-paid"] [text "Paid"]
+            , div [ class "toolbar-item is-ooo"] [text "Out of office"]
+            , div [ class "toolbar-item is-clear"] [text "Clear"]
+        ]
 
 calendarView : Model -> Html Msg
 calendarView model =
-        div [class "Content"]
-            [ div [ class "calendar-toolbar-box" ]
-                [ calendarEditHeader model
-                , calenderHeader model
-                ]
+        div [class "main"]
+            [     stylesheet 
+                , div [ class "header" ] [ text "Calendar" ]
+                , div [ class "content" ]
+                    [ calendarToolbar model
+                    , calenderHeader model
+                    ]
             ]
