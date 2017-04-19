@@ -52,19 +52,36 @@ calendarRow dateRow model =
         )
       ]
 
-calenderHeader : Model -> Html Msg
-calenderHeader model =
-    div [ class "calendar-row is-calendar-data"]
-      [ div [class "calendar-item"] [] ]
+calendar : Model -> Html Msg
+calendar model =
+    div [ class "calendar is-weeks"]
+      [ calendarHeader ["m", "t", "w", "t", "f"]]
 
-calendarToolbar : Model -> Html Msg
-calendarToolbar model =
+calendarHeader : List String -> Html Msg
+calendarHeader days =
+    div [ class "calendar-row is-calendar-data"]
+      (List.map
+            (\day ->
+                let 
+                    currentDay = String.toUpper day
+                in
+                     div [ class "calendar-item"] [text currentDay]
+            )
+            days
+        )
+
+calendarToolbar : List String -> Html Msg
+calendarToolbar eventTypes =
     div [class "toolbar"]
-        [     div [ class "toolbar-item is-late"] [text "Late"]
-            , div [ class "toolbar-item is-paid"] [text "Paid"]
-            , div [ class "toolbar-item is-ooo"] [text "Out of office"]
-            , div [ class "toolbar-item is-clear"] [text "Clear"]
-        ]
+        (List.map
+            (\typeItem ->
+                let 
+                    className = "toolbar-item is-" ++ typeItem
+                in
+                    div [ class className] [text typeItem]
+            )
+            eventTypes
+        )
 
 calendarView : Model -> Html Msg
 calendarView model =
@@ -72,7 +89,7 @@ calendarView model =
             [     stylesheet 
                 , div [ class "header" ] [ text "Calendar" ]
                 , div [ class "content" ]
-                    [ calendarToolbar model
-                    , calenderHeader model
+                    [ calendarToolbar ["late", "paid", "ooo", "clear"]
+                    , calendar model
                     ]
             ]
