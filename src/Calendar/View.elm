@@ -22,15 +22,14 @@ stylesheet =
 classNameFromState : EditState -> String
 classNameFromState state =
     case state of
-        DayOff ->
-            "calendar-item is-clickable is-"
+        Late ->
+            " is-late"
         Paid ->
-            "calendar-item is-clickable is-"
-        WorkFromHome ->
-            "calendar-item is-clickable is-"
-        Vacation ->
-            "calendar-item is-clickable is-"
-
+            " is-paid"
+        OutOfOffice ->
+            " is-ooo"
+        Default ->
+            " is-clear"
 
 calendarDay : Date -> EditState -> Html Msg
 calendarDay date dayState =
@@ -56,6 +55,7 @@ calendar : Model -> Html Msg
 calendar model =
     div [ class "calendar is-weeks"]
       [ calendarHeader ["m", "t", "w", "t", "f"]]
+      
 
 calendarHeader : List String -> Html Msg
 calendarHeader days =
@@ -70,17 +70,17 @@ calendarHeader days =
             days
         )
 
-calendarToolbar : List String -> Html Msg
-calendarToolbar eventTypes =
+calendarToolbar : List ToolbarItem -> Html Msg
+calendarToolbar toolbarItems =
     div [class "toolbar"]
         (List.map
-            (\typeItem ->
+            (\item ->
                 let 
-                    className = "toolbar-item is-" ++ typeItem
+                    className = "toolbar-item is-" ++ classNameFromState item.stateType
                 in
-                    div [ class className] [text typeItem]
+                    div [ class className] [text item.name]
             )
-            eventTypes
+            toolbarItems
         )
 
 calendarView : Model -> Html Msg
@@ -89,7 +89,7 @@ calendarView model =
             [     stylesheet 
                 , div [ class "header" ] [ text "Calendar" ]
                 , div [ class "content" ]
-                    [ calendarToolbar ["late", "paid", "ooo", "clear"]
+                    [ calendarToolbar model.toolbarItems
                     , calendar model
                     ]
             ]
