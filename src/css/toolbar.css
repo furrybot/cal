@@ -1,6 +1,5 @@
 .toolbar {
 	transition: var(--transition-timing-function) var(--transition-duration) opacity;
-	margin-top: -6.5rem;
 	position: absolute;
 }
 

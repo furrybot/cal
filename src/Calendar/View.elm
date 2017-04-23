@@ -38,37 +38,47 @@ calendarDay date dayState =
         ][]
 
 
-calendarRow : List Date -> Model -> Html Msg
-calendarRow dateRow model =
-    div [ class "calendar-row"]
-      [ div [ class "userpic"]
+calendarRow : User -> Html Msg
+calendarRow user =
+    div [ class "calendar-row" ]
+        [ div [ class "userpic" ] [ img [ src user.userpic, alt user.name, title user.name, width 50, height 50 ] [] ]
+        ,   div [ class "calendar-item is-clickable" ] [ text " " ]
+        ,   div [ class "calendar-item is-clickable" ] [ text " " ]
+        ,   div [ class "calendar-item is-clickable" ] [ text " " ]
+        ,   div [ class "calendar-item is-clickable" ] [ text " " ]
+        ,   div [ class "calendar-item is-clickable" ] [ text " " ]
+        ]
 
+calendarBody : List User -> Html Msg
+calendarBody users =
+    div [ class "calendar-body" ] 
         (List.map
-          (\day ->
-            calendarDay day Paid
-          )
-          dateRow
+            (\user ->
+                calendarRow user
+            )
+            users
         )
-      ]
+    
 
 calendar : Model -> Html Msg
 calendar model =
-    div [ class "calendar is-weeks"]
-      [ calendarHeader ["m", "t", "w", "t", "f"]]
+    div [ class "calendar is-weeks" ]
+      [ calendarHeader model.daysTitles 
+      , calendarBody model.users
+      ]
       
 
-calendarHeader : List String -> Html Msg
+calendarHeader : List Day -> Html Msg
 calendarHeader days =
-    div [ class "calendar-row is-calendar-data"]
-      (List.map
-            (\day ->
-                let 
-                    currentDay = String.toUpper day
-                in
-                     div [ class "calendar-item"] [text currentDay]
+    div [class "calendar-header"] [
+        div [ class "calendar-row is-calendar-data" ]
+          (List.map
+                (\day ->
+                    div [ class "calendar-item" ] [text (toString day)]
+                )
+                days
             )
-            days
-        )
+    ]
 
 calendarToolbar : List ToolbarItem -> Html Msg
 calendarToolbar toolbarItems =
