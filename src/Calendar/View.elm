@@ -31,22 +31,23 @@ classNameFromState state =
         Default ->
             " is-clear"
 
-calendarDay : Date -> EditState -> Html Msg
-calendarDay date dayState =
-    div [ class <| classNameFromState dayState
-        , onClick <| SelectDay date
-        ][]
+calendarItem : EditState -> Html Msg
+calendarItem dayState =
+    let
+        className =  "calendar-item is-clickable" ++ classNameFromState dayState
+    in    
+        div [ class className][ text " " ]
 
 
 calendarRow : User -> Html Msg
 calendarRow user =
     div [ class "calendar-row" ]
         [ div [ class "userpic" ] [ img [ src user.userpic, alt user.name, title user.name, width 50, height 50 ] [] ]
-        ,   div [ class "calendar-item is-clickable" ] [ text " " ]
-        ,   div [ class "calendar-item is-clickable" ] [ text " " ]
-        ,   div [ class "calendar-item is-clickable" ] [ text " " ]
-        ,   div [ class "calendar-item is-clickable" ] [ text " " ]
-        ,   div [ class "calendar-item is-clickable" ] [ text " " ]
+        ,   calendarItem Default
+        ,   calendarItem Paid
+        ,   calendarItem Late
+        ,   calendarItem Default
+        ,   calendarItem OutOfOffice
         ]
 
 calendarBody : List User -> Html Msg
@@ -58,7 +59,6 @@ calendarBody users =
             )
             users
         )
-    
 
 calendar : Model -> Html Msg
 calendar model =
@@ -66,7 +66,6 @@ calendar model =
       [ calendarHeader model.daysTitles 
       , calendarBody model.users
       ]
-      
 
 calendarHeader : List Day -> Html Msg
 calendarHeader days =

@@ -6,6 +6,9 @@
 .calendar {
 	display: flex;
 	flex-direction: column;
+}
+
+.calendar-body {
 	background: #fff;
 	border: 1px solid #e5e5e5;
 	border-radius: var(--calendar-border-radius);
@@ -14,11 +17,6 @@
 .calendar-row {
 	display: flex;
 	flex: 0 0 auto;
-}
-
-.calendar-row.is-calendar-data{
-	position: absolute;
-	margin-top: -2.5rem;
 }
 
 .calendar-row.is-calendar-data .calendar-item {
